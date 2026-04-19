@@ -1,0 +1,37 @@
+.counter {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  padding: 2rem;
+}
+#display {
+  font-size: 64px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.btn-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+button {
+  font-size: 24px;
+  padding: 8px 20px;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #f0f0f0;
+}
+
+#display.negative {
+  color: #3b6d11;
+}
+
+#display.positive {
+  color: #a32d2d;
+}

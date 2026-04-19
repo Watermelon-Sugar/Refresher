@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="calculator.css">
+</head>
+<body>
+    <div class="calculator">
+        <!-- Shows the current number and result -->
+        <div class="screen" id="screen">0</div>
+        
+    
+    <!-- Keypad with buttons for digits, operations, and clear -->
+        <div class="keypad">
+
+            <!-- Row 1: Clear spans 3 cols, Divide on the right -->
+
+            <button class="btn btn-clear span3" onclick="handleClear()">AC</button>
+            <button class="btn btn-operator" onclick="handleOperator('/')">÷</button> 
+
+            <!-- Row 2: 7, 8, 9, x on the right -->
+
+            <button class="btn" onclick="handleDigit('7')">7</button>
+            <button class="btn" onclick="handleDigit('8')">8</button>   
+            <button class="btn" onclick="handleDigit('9')">9</button>            
+            <button class="btn btn-operator" onclick="handleOperator('*')">×</button>
+
+            <!-- Row 3: 4, 5, 6, - on the right -->
+            <button class="btn" onclick="handleDigit('4')">4</button>
+            <button class="btn" onclick="handleDigit('5')">5</button>
+            <button class="btn" onclick="handleDigit('6')">6</button>
+            <button class="btn btn-operator" onclick="handleOperator('-')">-</button>
+
+            <!-- Row 4: 1, 2, 3, + on the right -->
+            <button class="btn" onclick="handleDigit('1')">1</button>
+            <button class="btn" onclick="handleDigit('2')">2</button>
+            <button class="btn" onclick="handleDigit('3')">3</button>
+            <button class="btn btn-operator" onclick="handleOperator('+')">+</button>
+
+            <!-- Row 5: 0, span 2 cols, . then = on right -->
+            <button class="btn span2" onclick="handleDigit('0')">0</button>
+            <button class="btn" onclick="handleDecimal()">.</button>
+            <button class="btn btn-equals" onclick="handleEquals()">=</button>
+        </div>
+    </div>
+    <script src="calculator.js"></script>
+</body>
+</html>

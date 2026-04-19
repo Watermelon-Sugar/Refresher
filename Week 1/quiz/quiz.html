@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Quiz</title>
+    <link rel="stylesheet" href="quiz.css" />
+  </head>
+  <body>
+    <div class="page">
+      <!-- Progress bar -->
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+
+      <!-- Question counter -->
+      <p class="counter" id="counter">Question 1 of 5</p>
+
+      <!-- Question text -->
+      <h1 id="question-text"></h1>
+
+      <!-- Answer buttons — filled in by JS -->
+      <div class="options" id="options"></div>
+
+      <!-- Feedback message (correct / wrong) -->
+      <p class="feedback" id="feedback"></p>
+
+      <!-- Next button — hidden until an answer is picked -->
+      <button class="btn-next" id="btn-next" onclick="nextQuestion()">
+        Next
+      </button>
+
+      <!-- Results screen — hidden until quiz ends -->
+      <div class="results" id="results">
+        <h2 id="results-title"></h2>
+        <p id="results-body"></p>
+        <button class="btn-next" id="btnRestart" onclick="restartQuiz()">Try again</button>
+      </div>
+    </div>
+
+    <script src="quiz.js"></script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My list</title>
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+
+  <div class="page">
+
+    <h1>My list</h1>
+
+    <!-- Input area -->
+    <div class="input-row">
+      <input
+        type="text"
+        id="item-input"
+        placeholder="Add something..."
+      />
+      <button id="add-btn" onclick="addItem()">Add</button>
+    </div>
+
+    <!-- Error message (shown when input is empty) -->
+    <p class="error" id="error"></p>
+
+    <!-- Summary: item count + clear button -->
+    <div class="summary" id="summary"></div>
+
+    <!-- The list -->
+    <ul class="list" id="item-list"></ul>
+
+    <!-- Empty state message -->
+    <p class="empty" id="empty-msg">Nothing here yet. Add something above.</p>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

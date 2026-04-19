@@ -1,0 +1,113 @@
+/* Reset */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Page */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f0ede8;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Calculator section */
+.calculator {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+    width: 320px;
+    overflow: hidden;
+}
+
+/* Display */
+.screen {
+  background: #e0e0e0;
+  border-radius: 10px;
+  padding: 15px;
+  font-size: 1.5em;
+  text-align: right;
+  margin-bottom: 20px;
+  min-height: 100px;
+  font-weight: 300;
+  word-break: all;
+  min-height: 100px;
+  line-height: 1;
+}
+
+/* Buttons */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  background: #e8e4df;
+  border-top: 1px solid #e0ddd8;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* Button styles */
+.btn {
+  background: #faf9f7;
+  border: none;
+  color: #1a1a1a;
+  border-radius: 10px;
+  padding: 18px 0;
+  font-size: 1.2em;
+  font-weight: 400;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.1s ease;
+}
+
+.btn:hover {
+  background: #f0ede8;
+}
+.btn:active {
+  background: #de870d;
+}
+
+/* Operator buttons (+  −  ×  ÷) */
+.btn-operator {
+  background: #d37794;
+  color: #fff;
+}
+
+.btn-operator:hover {
+  background: #c15f7b;
+}
+
+.btn-operator:active {
+  background: #a84e66;
+}
+/* Clear and equals buttons */
+.btn-clear {
+  background: #faf9f7;
+  color: #cc3333;
+}
+.btn-clear:hover {
+  background: #f0ede8;
+}
+.btn-clear:active {
+  background: #cc3333;
+  color: #fff;
+}
+
+.btn-equals {
+  background: #d37794;
+  color: #fff;
+}
+
+.btn-equals:hover {
+  background: #c15f7b;
+}
+
+
+/* Span helpers */
+.span2 { grid-column: span 2; }
+.span3 { grid-column: span 3; }

@@ -1,0 +1,277 @@
+/* Reset */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Design tokens */
+:root {
+  --bg-page:       #12121e;
+  --bg-card:       #1c1c2e;
+  --bg-input:      #14141f;
+  --bg-result:     #111e18;
+  --border:        #2e2e45;
+  --border-focus:  #5DCAA5;
+  --accent:        #5DCAA5;
+  --accent-dark:   #04342C;
+  --text-primary:  #e8e8f4;
+  --text-muted:    #7878a0;
+  --text-result:   #b8ffda;
+  --radius-sm:     8px;
+  --radius-md:     12px;
+  --radius-lg:     16px;
+}
+
+/* Page */
+body {
+    min-height: 100vh;
+    background: var(--bg-page);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 1.5rem 1rem;
+    color: var(--text-primary);
+}
+
+/* App Card */
+.app {
+    width: 100%;
+    max-width: 420px;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Heading */
+h1 { font-size: 22px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 1.75rem;
+  letter-spacing: -0.3px;
+}
+
+/* Sections */
+section {
+  margin-bottom: 1.5rem;
+}
+
+.section-label {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+/* Inputs */
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    transition: border-color 0.3s;
+}
+
+.input-wrapper:focus-within {
+    border-color: var(--border-focus);
+}
+
+.input-prefix, .input-suffix {
+    padding: 0 0.75rem;
+    background: var(--bg-input);
+    color: var(--text-muted);
+    font-size: 14px;
+    user-select: none;
+}
+
+.input-wrapper input {
+    flex: 1;
+    padding: 0.75rem 0.75rem 0.7rem 0;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 16px;
+    outline: none;
+    font-family: inherit;
+}
+
+.input-wrapper input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+/* Preset */
+.preset-row {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.preset-btn {
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    font-size: 14px;
+    padding: 12px 0;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: inherit;
+}
+
+.preset-btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--text-primary);
+}
+
+.preset-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-dark);
+    font-weight: 500;
+}
+
+/* Custom % input */
+.custom-row {
+    margin-top: 12px;
+    display: none; /* Hidden by default, shown when "Custom" is active via JS */  
+}
+
+.custom-row.visible {
+display: block;
+}
+
+/* Splt Counter */
+.split-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.split-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--bg-input);
+    color: var(--text-primary);
+    font-style: 24px;
+    border: 1px solid var(--bg-input);
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    line-height: 1;
+}
+
+.split-btn:hover:not(:disabled) {
+      border-color: var(--accent);
+    color: var(--accent);
+}
+
+.split-btn:disabled {
+    cursor: default;
+    opacity: 0.5;
+}
+
+.split-count {
+    font-size: 28px;
+    color: var(--text-primary);
+    text-align: center;
+    font-weight: 500;
+    min-width: 32px;
+}
+
+.split-label {
+    font-size: 16px;
+    color: var(--text-muted);
+}
+
+/* Results */
+.result-row {
+    gap: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-radius: var(--radius-md);
+    background: var(--bg-result);
+    padding: 1.5rem;
+    margin-bottom: 14px;
+    border: 1px solid #44d683
+}
+
+.result-item {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.result-label {
+    font-size: 14px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.8;
+}
+
+.result-value {
+    font-size: 32px;
+    color: var(--text-result);
+    font-weight: 700;
+}
+
+/* Round up toggle */
+.round-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--bg-input);
+    padding: 0.75rem 1rem;
+}
+
+.round-label {
+    font-size: 16px;
+    color: var(--text-muted);
+}
+
+/* Toggle Switch */
+.toggle {
+  width: 42px;
+  height: 24px;
+    border-radius: 12px;
+    background: var(--border);
+    border: none;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.3s;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.toggle.on {
+    background: var(--accent);
+}
+
+.toggle-point {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  top: 3px;
+  left: 3px;
+  transition: left 0.2s;
+}
+
+.toggle.on .toggle-point {
+    left: 21px;
+}
