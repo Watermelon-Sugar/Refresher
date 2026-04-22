@@ -1,0 +1,159 @@
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Page */
+body {
+  min-height: 100vh;
+  background: #f5efef;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  color: #131111;
+  padding: 2rem 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* App card */
+.app {
+  width: 100%;
+  max-width: 560px;
+}
+
+/* Heading */
+h1 {
+  font-size: 32px;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 1.5rem;
+}
+
+/* Button row */
+.btn-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+/* Base button */
+.btn {
+  padding: 9px 18px;
+  font-size: 14px;
+  font-family: inherit;
+  border: 1px solid #959595;
+  border-radius: 8px;
+  background: #fff;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.btn:hover {
+  background: #f0ede8;
+  border-color: #bbb;
+}
+
+/* Accent — used for the Promise button */
+.btn-accent {
+  background: #1a1a1a;
+  color: #fff;
+}
+.btn-accent:hover {
+  background: #333;
+}
+
+/* Danger — used for the failure button */
+.btn-danger {
+  border-color: #e0a0a0;
+  color: #993333;
+}
+.btn-danger:hover {
+  background: #fdf0f0;
+}
+
+/* Ghost — used for Clear */
+.btn-ghost {
+  color: #aaa;
+  border-color: #eee;
+}
+.btn-ghost:hover {
+  background: #faf9f7;
+  color: #666;
+}
+
+/* Log panel */
+.log-panel {
+  background: #1a1a2a;
+  border-radius: 12px;
+  padding: 1.25rem;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Empty state */
+.log-empty {
+  font-size: 14px;
+  color: #555577;
+  text-align: center;
+  margin: auto;
+}
+
+/* Each log entry */
+.log-entry {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  font-family: "Courier New", monospace;
+  animation: slide-in 0.2s ease;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Timestamp */
+.log-time {
+  color: #555577;
+  flex-shrink: 0;
+  min-width: 52px;
+}
+
+/* Log text */
+.log-text {
+  color: #e0e0f4;
+  line-height: 1.5;
+}
+
+/* Colour coding by type */
+.log-entry.info .log-text {
+  color: #aaaacc;
+}
+.log-entry.success .log-text {
+  color: #5dcaa5;
+}
+.log-entry.error .log-text {
+  color: #ff7070;
+}
+.log-entry.pending .log-text {
+  color: #f0c060;
+}

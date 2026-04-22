@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Country search</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="page">
+
+    <h1>Country search</h1>
+    <p class="subtitle">Fetches live data from the REST Countries API</p>
+
+    <!-- Search input row -->
+    <div class="search-row">
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Type a country name..."
+        autocomplete="off"
+      />
+      <button id="search-btn">Search</button>
+    </div>
+
+    <!-- Error message — shown when fetch fails -->
+    <p class="error-msg" id="error-msg"></p>
+
+    <!-- Loading indicator — shown while fetching -->
+    <p class="loading-msg" id="loading-msg"></p>
+
+    <!-- Results grid — cards injected here by JS -->
+    <div class="results-grid" id="results-grid"></div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

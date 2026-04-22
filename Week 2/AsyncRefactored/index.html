@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Async</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <h1>Async</h1>
+      <p class="subtitle">
+        Simulates fetching a user, then their orders - like a real API would...
+      </p>
+
+      <!-- Buttons to trigger each pattern -->
+      <div class="btn-row">
+        <button id="btn-callback" class="btn">Run with callback</button>
+        <button id="btn-promise" class="btn btn-accent">
+          Run with Promise
+        </button>
+        <button id="btn-fail" class="btn btn-danger">Simulate failure</button>
+        <button id="btn-clear" class="btn btn-ghost">Clear log</button>
+      </div>
+
+      <!-- Log panel — JS writes entries here -->
+      <div class="log-panel" id="log-panel">
+        <p class="log-empty">Press a button to see async in action.</p>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
