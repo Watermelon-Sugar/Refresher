@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <h1>Weather Search</h1>
+
+      <!-- Search Row-->
+      <div class="search-row">
+        <input type="text" id="city-input" placeholder="Enter a city name..." />
+        <button id="search-btn">Search</button>
+      </div>
+
+      <!-- UI  States - only one is visible at a time -->
+      <!-- Empty state shownbefore 1st searcg=h-->
+      <div class="state" id="state-empty">
+        <div class="state-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <circle cx="20" cy="20" r="18" stroke="#ddd" stroke-width="2" />
+            <path
+              d="M20 12v8l5 5"
+              stroke="#ddd"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+        <p class="state-text">Search for any city to see the weather</p>
+      </div>
+
+      <!--Loading State shown while fetch is in progress -->
+      <div class="state hidden" id="state-loading">
+        <div class="spinner"></div>
+        <p class="state-text">Fetching weather data...</p>
+      </div>
+
+      <!--Error State shown when something is wrong -->
+      <div class="state hidden" id="state-error">
+        <div class="state-icon error-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <circle cx="20" cy="20" r="18" stroke="#cc3333" stroke-width="2" />
+            <path
+              d="M20 12v10M20 27v2"
+              stroke="#cc3333"
+              stroke-width="2.5"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+        <p class="state-title" id="error-title">Something went wrong</p>
+        <p class="state-text" id="error-message"></p>
+        <button class="btn-retry" id="btn-retry">Try Again</button>
+      </div>
+
+      <!-- Result state shown when data arrives successfully -->
+  <div class="state hidden" id="state-results">
+        <!-- City header -->
+        <div class="city-header">
+          <div>
+            <h2 id="city-name"></h2>
+            <p class="city-coords" id="city-coords"></p>
+          </div>
+          <div class="temp-badge" id="temp-badge"></div>
+        </div>
+
+        <!-- Weather Detail Card-->
+        <div class="weather-grid" id="weather-grid"></div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
