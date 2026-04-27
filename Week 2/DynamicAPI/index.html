@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <h1>Posts</h1>
+            <p class="subtitle">Fetches 100 posts from JSONPlaceholder - search, filter and sort live.</p>
+        </div>
+
+        <!-- Toolbar: search, filter, sort -->
+        <div class="toolbar">
+            <input type="text" id="search-input" placeholder="Search by title or content.." autocomplete="off">
+            <select id="user-filter">
+                <option value="">All Users</option>
+<!-- Options are added by JS once data loads -->
+        </select>
+            <select id="sort-options">
+                <option value="">Sort: default</option>
+                <option value="title-asc">Title (A-Z)</option>
+                <option value="title-desc">Title (Z-A)</option>
+               </select>
+        </div>
+
+    <!-- Shows how many posts are visible -->
+<p class="count-bar" id="count-bar"></p>
+
+<!-- Loading state -->
+<div class="state" id="state-loading">
+  <div class="spinner"></div>
+  <p class="state-text">Fetching posts...</p>
+</div>
+
+<!-- Error state -->
+<div class="state hidden" id="state-error">
+  <p class="error-title" id="error-title">Failed to load posts</p>
+  <p class="error-msg" id="error-msg"></p>
+  <button class="btn-retry" id="btn-retry">Try Again</button>
+</div>
+
+<!-- Posts grid -->
+<div class="posts-grid hidden" id="post-grid"></div>
+
+<!-- Modal -->
+<div class="modal-backdrop hidden" id="modal-backdrop">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button class="modal-close" id="modal-close" aria-label="Close">×</button>
+         <p class="modal-id"    id="modal-id"></p>
+      <h2 class="modal-title" id="modal-title"></h2>
+      <p class="modal-body"  id="modal-body"></p>
+      <p class="modal-user"  id="modal-user"></p>
+    </div>
+</div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
