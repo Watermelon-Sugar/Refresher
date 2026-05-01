@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Tip Calculator</title>
+  </head>
+  <body>
+    <div class="app">
+      <h1>Tip Calculator</h1>
+      <!-- Input for bill amount -->
+      <div class="section">
+        <label for="bill-input" class="section-label">Bill Amount</label>
+        <div class="input-wrapper">
+          <span class="input-prefix">₦</span>
+          <input
+            type="number"
+            id="bill-input"
+            placeholder="0.00"
+            min="0"
+            step="0.01"
+          />
+        </div>
+      </div>
+
+      <!-- Input for tip percentage -->
+
+      <div class="section">
+        <label class="section-label">Tip %</label>
+
+        <!-- Preset Buttons for tip percentage -->
+        <div class="preset-row">
+          <button class="preset-btn" data-tip="10">10%</button>
+          <button class="preset-btn" data-tip="15">15%</button>
+          <button class="preset-btn" data-tip="20">20%</button>
+          <button class="preset-btn" data-tip="custom">Custom</button>
+        </div>
+
+        <!-- Custom input for tip percentage. hidden until "custom" is selected -->
+        <div class="custom-row" id="custom-row">
+          <div class="input-wrapper">
+            <input
+              type="number"
+              id="custom-input"
+              placeholder="Enter %"
+              min="0"
+              max="100"
+              step="1"
+            />
+            <span class="input-suffix">%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Split -->
+      <div class="section">
+        <label class="section-label">Split between</label>
+        <div class="split-row">
+          <button class="split-btn" id="split-minus">-</button>
+          <span class="split-count" id="split-count">1</span>
+          <button class="split-btn" id="split-plus">+</button>
+          <span class="split-label" id="split-label">person</span>
+        </div>
+      </div>
+
+      <!-- Result Panel -->
+      <div class="results">
+        <div class="result-item">
+          <span class="result-label">Tip</span>
+          <span class="result-value" id="tip-value">-</span>
+        </div>
+        <div class="result-item">
+          <span class="result-label">Total</span>
+          <span class="result-value" id="total-value">-</span>
+        </div>
+        <div class="result-item" id="per-person-item">
+          <span class="result-label">Per Person</span>
+          <span class="result-value" id="value-per-person">-</span>
+        </div>
+      </div>
+      <!-- Round up Toggle -->
+      <div class="round-row">
+        <span class="round-label">Round up total</span>
+        <button class="toggle" id="round-toggle" aria-pressed="false">
+          <span class="toggle-point"></span>
+        </button>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

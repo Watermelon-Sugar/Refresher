@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Closure Counter</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <h1>Closure Counter</h1>
+      <p class="subtitle">
+        Each counter is a completely independent closure. They share no state.
+      </p>
+
+      <!-- Counter A -->
+      <div class="counter-card">
+        <div class="counter-label">Counter A</div>
+        <div class="counter-desc">
+          Created with makeCounter(0). Starts at zero.
+        </div>
+
+        <div class="counter-display" id="display-a">0</div>
+
+        <div class="controls">
+          <button class="btn-dec" id="dec-a">-</button>
+          <button class="btn-reset" id="reset-a">Reset</button>
+          <button class="btn-inc" id="inc-a">+</button>
+        </div>
+        <p class="counter-log" id="log-a">
+          Count lives privately inside the closure
+        </p>
+      </div>
+
+      <!-- Counter B -->
+      <div class="counter-card">
+        <div class="counter-label">Counter B</div>
+        <div class="counter-desc">
+          Created with makeCounter(10). Starts at ten.
+        </div>
+
+        <div class="counter-display" id="display-b">10</div>
+
+        <div class="controls">
+          <button class="btn-dec" id="dec-b">-</button>
+          <button class="btn-reset" id="reset-b">Reset</button>
+          <button class="btn-inc" id="inc-b">+</button>
+        </div>
+        <p class="counter-log" id="log-b">
+          Count lives privately inside the closure
+        </p>
+      </div>
+
+      <!-- Proof panel -->
+      <div class="proof-panel">
+        <p class="proof-title">Proof of privacy</p>
+        <p class="proof-desc">
+          Open the browser console (F12) and try typing
+          <code>counterA.count</code>, it returns <code>undefined</code>.
+          Because it's inside a closure, the count variable is private; it can't
+          be reached or changed from outside the function.
+        </p>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

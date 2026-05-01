@@ -1,0 +1,73 @@
+What is a utility functions repo?
+A utility library is a collection of small, single-purpose, reusable functions. Each function does one thing well and can be copied into any project. Think of it as your personal toolbox — you build it once and use it forever.
+
+1 - Pure functions — takes inputs, returns outputs. No side effects, no DOM, no globals.
+2 - Self-documenting — each function has a JSDoc comment explaining what it does, its parameters, and return value.
+3 - Tested — a separate test file proves each function works correctly with real examples.
+4 - Organised by category — numbers, strings, arrays, objects, async. Easy to find what you need.
+Lodash, the most downloaded npm package of all time, is just a utility library. You're building the same thing — except you wrote every function yourself, so you understand it completely.
+
+Every concept from 3 weeks appears here
+Arrow functions - Week 1 - all utility functions are arrows 
+map/filter/reduce - Week 1 - array utilities built with these
+Async/await - Week 2 - fetchWithTimeout, retry
+Error handling - Week 2 - safeJsonParse, tryCatchWrap
+Closures - Week 3 - debounce, throttle, memoize
+Destructuring - Week 3 - pick, omit use object rest/spread
+Debounce/throttle - Week 3 - the real implementations
+
+Repo structure
+js-utils/
+├── README.md          ← how to use the library
+├── utils.js           ← all utility functions (the main file)
+├── utils.test.js      ← tests — run in browser console
+└── demo.html          ← live demo of every function
+JSDoc — how each function is documented
+JSDoc comments sit directly above each function. They describe the purpose, each parameter's type and name, and what gets returned. This is the industry standard for documenting JS functions.
+
+* Clamps a number between a minimum and maximum value.
+*
+* @param {number} value - The number to clamp
+* @param {number} min   - The lower bound
+* @param {number} max   - The upper bound
+* @returns {number}     - The clamped value
+* @example
+* clamp(150, 0, 100) // 100
+* clamp(-5,  0, 100) // 0
+* clamp(50,  0, 100) // 50
+
+const clamp = (value, min, max) =>
+  Math.min(Math.max(value, min), max);
+
+VS Code and other editors read JSDoc comments and show them as tooltips when you hover over the function. Write them for every function you add.
+
+Function catalogue
+All 30 functions — by category
+Number utils - 6 functions - clamp · randomInt · round · formatCurrency · isEven · isOdd
+String utils - 7 functions - capitalize · truncate · slugify · reverseString · countWords · isPalindrome · stripHtml
+Array utils - 7 functions - unique · chunk · flatten · shuffle · groupBy · sum · average
+Object utils - 4 functions - pick · omit · deepClone · isEmpty
+Function utils - 4 functions - debounce · throttle · memoize · pipe
+Async utils - 2 functions - fetchWithTimeout · sleep
+30 functions is a solid library. Lodash has ~300. The goal isn't quantity — it's that you understand every single function in yours completely.
+
+How to use the library in any project
+Option 1: script tag in HTML
+<script src="utils.js"></script>
+
+hen use any function directly:
+const result = clamp(150, 0, 100); //100
+const slug   = slugify("Hello World"); //"hello-world"
+
+Drop utils.js into any project folder, add the script tag, and all 30 functions are available immediately.
+
+How to run the tests
+1. Open demo.html in your browser
+2. Press F12 to open the console
+3. The test file runs automatically and logs:
+
+clamp(150, 0, 100) - 100
+capitalize("hello") - "Hello"
+unique([1,1,2,3,3]) - [1,2,3]
+...
+All 30 tests passed
