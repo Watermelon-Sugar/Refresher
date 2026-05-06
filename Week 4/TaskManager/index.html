@@ -33,6 +33,32 @@
         <p class="input-error" id="input-error"></p>
       </div>
 
+    <!-- Search and filter -->
+     <div class="controls">
+ 
+      <!-- Search input -->
+      <div class="search-wrapper">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <circle cx="6.5" cy="6.5" r="4.5" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M10 10l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search tasks..."
+          autocomplete="off"
+        />
+        <button class="search-clear hidden" id="search-clear" aria-label="Clear search">×</button>
+      </div>
+ 
+      <!-- Filter tabs: All / Active / Completed -->
+      <div class="filter-group" id="filter-group">
+        <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="active">Active</button>
+  <button class="filter-btn" data-filter="completed">Completed</button>
+      </div>
+ 
+
       <!-- Empty state -->
       <div class="empty-state" id="empty-state">
         <div class="empty-icon">
@@ -54,13 +80,13 @@
             />
           </svg>
         </div>
-        <p class="epty-title">No tasks yet</p>
-        <p class="empty-sub">Add your first task above to get started</p>
+        <p class="empty-title" id="empty-title">No tasks yet</p>
+        <p class="empty-sub" id="empty-sub">Add your first task above to get started</p>
       </div>
 
       <!-- Task list -->
       <ul class="task-list" id="task-list"></ul>
     </div>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
   </body>
 </html>

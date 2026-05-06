@@ -10,7 +10,7 @@ function makeIdGenerator(prefix) {
 const generateTaskId = makeIdGenerator("task");
 
 //State
-let tasks = JSON.parse(localStorage.getItem('myTasks')) || [];
+let tasks = JSON.parse(localStorage.getItem("myTasks")) || [];
 let filter = "all";
 let search = "";
 
@@ -29,30 +29,27 @@ function createTask(text) {
     createdAt: new Date().toISOString(),
   };
 
-    tasks = [...tasks, task];
-    saveToLocaleStorage();
+  tasks = [...tasks, task];
+  saveToLocalStorage();
   return task;
 }
 
 //deleteTask(id) - removes a task by its ID
 function deleteTask(id) {
-  tasks = tasks.filter(function (task) {
-    return task.id !== id;
-  });
-    saveToLocaleStorage();
+  tasks = tasks.filter((task) => task.id !== id);
+  saveToLocalStorage();
 }
 
 //toggleTask(id) - flips a task's completed state
 function toggleTask(id) {
-  tasks = tasks.map(function (task) {
-    if (task.id !== id) return task;
-    return { ...task, completed: !task.completed };
-  });
-    saveToLocaleStorage();
+  tasks = tasks.map((task) =>
+    task.id === id ? { ...task, completed: !task.completed } : task
+  );
+  saveToLocalStorage();
 }
 
-function saveToLocaleStorage() {
-    localStorage.setItem('myTasks', JSON.stringify(tasks));
+function saveToLocalStorage() {
+  localStorage.setItem("myTasks", JSON.stringify(tasks));
 }
 
 //Render helpers
@@ -62,62 +59,119 @@ function formatDate(isoString) {
 }
 
 //buildTaskHTML - returns the HTML string for one task item
-
 function buildTaskHTML(task) {
   const { id, text, completed, createdAt } = task;
 
-  const checkedClass = completed ? "checked" : "";
-
-  const completedClass = completed ? "completed" : "";
-
   return `
-    <li class="task-item ${completedClass}" data-id="${id}">
+    <li class="task-item ${completed ? "completed" : ""}" data-id="${id}">
+      <div class="task-checkbox ${completed ? "checked" : ""}" data-action="toggle" data-id="${id}"></div>
 
-      <div class="task-checkbox ${checkedClass}" data-action="toggle" data-id="${id}"></div>
-
-      <span class="task-text" data-action="toggle" data-id="${id}">${text}</span>
+      <span class="task-text" data-action="toggle" data-id="${id}">
+        ${text}
+      </span>
 
       <span class="task-meta">${formatDate(createdAt)}</span>
 
-      <button class="task-delete" data-action="delete" data-id="${id}" aria-label="Delete task">
-        ×
+      <button class="task-delete" data-action="delete" data-id="${id}">
+        <span>×</span>
       </button>
-
     </li>
-    `;
+  `;
 }
 
 //updateTaskCount() - updates the header subtitle
 
-function updateTaskcount() {
+function updateTaskCount() {
   const countEl = document.getElementById("task-count");
   const total = tasks.length;
-  const completed = tasks.filter(t => t.completed).length;
+  const completed = tasks.filter((t) => t.completed).length;
 
   if (total === 0) {
     countEl.textContent = "No tasks yet";
   } else if (completed === total) {
-    countEl.textContent = "All" + total + "tasks complete 🎉";
+    countEl.textContent = "All " + total + " tasks complete 🎉";
   } else {
     countEl.textContent = completed + " of " + total + " complete";
   }
+}
+
+function getEmptyStateMessages() {
+  const hasSearch = search.trim() !== "";
+
+  if (tasks.length === 0) {
+    return {
+      title: "No tasks yet...",
+      sub: "Add your first task above to get started",
+    };
+  }
+
+  if (hasSearch) {
+    return {
+      title: `No results for "${search}"`,
+      sub: "Try a different keyword or clear the search",
+    };
+  }
+
+  const messages = {
+    active: { title: "No active tasks", sub: "All your tasks are complete 🎉" },
+    completed: {
+      title: "No completed tasks",
+      sub: "Complete a task to see it here",
+    },
+  };
+
+  return messages[filter] || { title: "Nothing here", sub: "" };
+}
+
+function getVisibleTasks() {
+  let result = [...tasks];
+
+  if (filter === "active") {
+    result = result.filter((task) => !task.completed);
+  } else if (filter === "completed") {
+    result = result.filter((task) => task.completed);
+  }
+
+  if (search.trim() !== "") {
+    const term = search.toLowerCase();
+    result = result.filter((task) =>
+      task.text.toLowerCase().includes(term)
+    );
+  }
+
+  return result;
+}
+
+function updateFilterGroup() {
+  document.querySelectorAll(".filter-btn").forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.filter === filter);
+  });
 }
 
 //Main render()
 function render() {
   const taskList = document.getElementById("task-list");
   const emptyState = document.getElementById("empty-state");
+  const emptyTitle = document.getElementById("empty-title");
+  const emptySub = document.getElementById("empty-sub");
 
-  const visibleTasks = tasks;
+  const visibleTasks = getVisibleTasks();
 
   if (visibleTasks.length === 0) {
     emptyState.style.display = "";
     taskList.innerHTML = "";
+
+    const { title, sub } = getEmptyStateMessages();
+    emptyTitle.textContent = title;
+    emptySub.textContent = sub;
+
   } else {
+
     emptyState.style.display = "none";
     taskList.innerHTML = visibleTasks.map(buildTaskHTML).join("");
   }
-  updateTaskcount();
+  updateTaskCount();
+  updateFilterGroup()
 }
 
 //Event listeners
@@ -143,34 +197,65 @@ function handleAdd() {
 
 addBtn.addEventListener("click", handleAdd);
 
-taskInput.addEventListener("keydown", function(e) {
+taskInput.addEventListener("keydown", function (e) {
   if (e.key === "Enter") handleAdd();
 });
 
-taskInput.addEventListener("input", function () {
-  if (taskInput.value.trim() !== "") {
-    inputError.textContent = "";
-  }
+
+document.getElementById("filter-group").addEventListener("click", function(e) {
+  const btn = e.target.closest(".filter-btn");
+  if (!btn) return;
+  filter = btn.dataset.filter;
+  render();
 });
 
-//Task list: toggle anf delte via event delegation
+//Task list: toggle and delete via event delegation
 document.getElementById("task-list").addEventListener("click", function (e) {
-  const target = e.target.closest("[data-action]");
-  if (!target) return;
+  const actionEl = e.target.closest("[data-action]");
+  if (!actionEl) return;
 
-  const action = target.dataset.action;
-  const id = target.dataset.id;
+  const { action, id } = actionEl.dataset;
+
+   if (action === "delete") {
+    e.stopPropagation();
+    deleteTask(id);
+    render();
+    return;
+  }
 
   if (action === "toggle") {
     toggleTask(id);
     render();
   }
-
-  if (action === "delete") {
-    deleteTask(id);
-    render();
-  }
 });
+
+//Search: Debounce
+function debounce(fn, delay) {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn(...args), delay);
+  };
+}
+
+const searchInputEl = document.getElementById('search-input');
+const searchClearBtn = document.getElementById('search-clear');
+
+searchInputEl.addEventListener('input', debounce(function () { 
+  search = searchInputEl.value;
+
+ searchClearBtn.classList.toggle("hidden", search.trim() === "");
+
+  render()
+}, 250))
+
+searchClearBtn.addEventListener('click', function () { 
+  search = '';
+  searchInputEl.value = '';
+  searchClearBtn.classList.add('hidden');
+  searchInputEl.focus();
+  render();
+})
 
 //Init
 render();
